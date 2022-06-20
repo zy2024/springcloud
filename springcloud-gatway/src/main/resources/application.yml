@@ -1,0 +1,29 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    # 以端口号注册
+    instance-id: gateway
+server:
+  port: 8081
+spring:
+  application:
+    name: gateway
+    # 取名字
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          route-id-prefix: /api
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: bus
+          uri: http://localhost:8082/
+#          uri: lb://bus-service   两种方式都可以实现转发
+          predicates:
+              - Path=/bus-service/*
+
+
