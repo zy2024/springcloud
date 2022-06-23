@@ -1,9 +1,9 @@
 package com.example.study.service;
 
-import com.example.study.Log.Log;
 import com.example.study.entiy.User;
 import com.example.study.mapper.UserDao;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 @Service

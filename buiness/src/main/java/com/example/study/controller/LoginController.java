@@ -1,6 +1,6 @@
 package com.example.study.controller;
 
-import com.example.study.Log.Log;
+import com.example.study.log.Log;
 import com.example.study.entiy.User;
 import com.example.study.service.UserService;
 import com.example.study.util.IdUtils;
@@ -9,7 +9,6 @@ import com.example.study.util.JwtUtils;
 import com.example.study.util.Md5Utils;
 import com.example.study.util.ResponseResult;
 import com.example.study.utils.RedisUtil;
-import io.netty.util.collection.CharObjectHashMap;
 import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -26,7 +25,6 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/user")
@@ -39,6 +37,7 @@ public class LoginController  {
     @Resource
     private RedisUtil redisUtil;
     @RequestMapping("/toLogin")
+    @Log
     public String  tpLogin(HttpServletRequest request, HttpServletResponse response, @Param("userName")String userName, @Param("pwd")String pwd) throws IOException {
 
         UsernamePasswordToken token = new UsernamePasswordToken(userName,pwd);
@@ -79,7 +78,7 @@ public class LoginController  {
     }
 //    @Log(value = "登录")
     @PostMapping("/register")
-
+    @Log
     public ResponseResult register(@RequestBody User user){
         user.setSalt(Md5Utils.randomSalt());
         String newPassWord = Md5Utils.md5(user.getPwd(),user.getSalt());

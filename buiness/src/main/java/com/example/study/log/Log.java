@@ -1,8 +1,10 @@
-package com.example.study.Log;
+package com.example.study.log;
 
-import javax.xml.bind.Element;
 import java.lang.annotation.*;
 
+/**
+ * @author 阿星
+ */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

@@ -28,7 +28,7 @@ public class AcceptCon {
      * execution(* com.annotation..*.*(String,?,Long)) com.annotation包及子包下所有的类的有三个参数，第一个参数为String类型，第二个参数为任意类型，第三个参数为Long类型的方法
      * execution(@annotation(com.lingyejun.annotation.Lingyejun))
      */
-    @Pointcut("@annotation(com.example.study.Log.Log)")
+    @Pointcut("@annotation(com.example.study.log.Log)")
     public void logPointCut() {}
 
     @Around("logPointCut()")
