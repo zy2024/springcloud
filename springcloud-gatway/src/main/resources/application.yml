@@ -25,5 +25,26 @@ spring:
 #          uri: lb://bus-service   两种方式都可以实现转发
           predicates:
               - Path=/bus-service/*
-
-
+          filters:
+            - StripPrefix= 1
+            # 指定过滤器
+            - name: RequestRateLimiter
+              args:
+                # 指定限流标识
+                key-resolver: '#{@ipKeyResolver}'
+                # 速率限流
+                redis-rate-limiter.replenishRate: 1
+                # 能容纳的并发流量总数
+                redis-rate-limiter.burstCapacity: 2
+  redis:
+    host: 192.168.32.18
+    password: 123456
+    database: 0
+    connect-timeout: 6000
+    timeout: 3000
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0

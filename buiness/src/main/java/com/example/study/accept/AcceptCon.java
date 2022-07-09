@@ -31,7 +31,7 @@ public class AcceptCon {
     @Pointcut("@annotation(com.example.study.log.Log)")
     public void logPointCut() {}
 
-    @Around("logPointCut()")
+    @Before("logPointCut()")
     public void around(JoinPoint joinPoint){
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();

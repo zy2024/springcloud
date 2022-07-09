@@ -16,7 +16,9 @@ public class InterceptorConfig implements WebMvcConfigurer {
         String[] excludePathPatterns = {
                 "/user/sendSsm",
                 "/user/toLogin",
-                "/user/error","page/login.html","/user/register"
+                "/user/index",
+                "/page/**",
+                "/user/error","/user/register"
         };
         //创建用户拦截器对象并指定其拦截的路径和排除的路径
         registry.addInterceptor(new UserInterceptor()).addPathPatterns(addPathPatterns).excludePathPatterns(excludePathPatterns);

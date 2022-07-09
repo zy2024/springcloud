@@ -24,7 +24,8 @@ public class ShiroConfig
         ShiroFilterFactoryBean bean=new ShiroFilterFactoryBean();
         bean.setSecurityManager(securityManager);
         bean.setUnauthorizedUrl("/user/error");
-        //bean.setLoginUrl("/user/toLogin");
+        bean.setLoginUrl("/user/index");
+        bean.setSuccessUrl("/user/success");
 //        bean.setLoginUrl("/user/toLogin");
         //添加shiro的内置过滤器
         /*
@@ -53,9 +54,11 @@ public class ShiroConfig
          **/
         filterMap.put("/user/error","anon");
         filterMap.put("/user/toLogin","anon");
+        filterMap.put("/user/index","anon");
         filterMap.put("/user/sendSsm","anon");
         filterMap.put("/user/getInfo","anon");
         filterMap.put("/user/register","anon");
+        filterMap.put("/page/**","anon");
         filterMap.put("/**", "authc");
 
         // 将拦截器链设置到shiro中

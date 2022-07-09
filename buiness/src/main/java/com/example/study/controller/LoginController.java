@@ -16,9 +16,13 @@ import org.apache.shiro.subject.Subject;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import org.springframework.ui.Model;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -26,7 +30,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-@RestController
+@Controller
 @RequestMapping("/user")
 
 public class LoginController  {
@@ -37,8 +41,8 @@ public class LoginController  {
     @Resource
     private RedisUtil redisUtil;
     @RequestMapping("/toLogin")
-    @Log
-    public String  tpLogin(HttpServletRequest request, HttpServletResponse response, @Param("userName")String userName, @Param("pwd")String pwd) throws IOException {
+    public String  tpLogin(HttpServletRequest request, HttpServletResponse response,
+                           @Param("userName")String userName, @Param("pwd")String pwd, ModelMap modelMap) throws IOException {
 
         UsernamePasswordToken token = new UsernamePasswordToken(userName,pwd);
         Subject subject = SecurityUtils.getSubject();
@@ -47,17 +51,24 @@ public class LoginController  {
         String cooick = JwtUtils.createToken(userInfo.getId());
        redisUtil.set(userInfo.getId(),cooick);
         response.setHeader("token",cooick);
-        return "index.html";
+        request.setAttribute("token",cooick);
+        modelMap.addAttribute("user",userInfo);
+        return "index";
     }
 
+    @RequestMapping("/success")
+    public String success(){
+        return "index";
+    }
     @RequestMapping("/error")
     public String error(){
         return "error/404.html";
     }
 
     @GetMapping("/index")
+    @Log
     public String login() {
-        return "page/login.html";
+        return "page/login";
     }
     @GetMapping("/sendSsm")
     @Log
