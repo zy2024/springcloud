@@ -67,8 +67,9 @@ public class LoginController  {
 
     @GetMapping("/index")
     @Log
+    @ResponseBody
     public String login() {
-        return "page/login";
+        return "请求成功";
     }
     @GetMapping("/sendSsm")
     @Log

@@ -7,7 +7,7 @@ eureka:
     # 以端口号注册
     instance-id: bus-service
 self:
-    myIp: 192.168.32.178
+    myIp: 192.168.32.202
 server:
   port: 8082
 spring:
@@ -29,7 +29,7 @@ spring:
     servlet:
       content-type: text/html
   redis:
-    host: 192.168.32.186
+    host: ${self.myIp}
     password: 123456
     database: 0
     connect-timeout: 6000
@@ -56,7 +56,7 @@ spring:
           max-attempts: 5
           max-interval: 3000
     port: 5672
-    host: 192.168.32.186
+    host: ${self.myIp}
 
 
 mybatis:
