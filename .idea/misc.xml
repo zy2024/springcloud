@@ -9,6 +9,10 @@
         <option value="$PROJECT_DIR$/springcloud-gatway/pom.xml" />
         <option value="$PROJECT_DIR$/buiness/pom.xml" />
         <option value="$PROJECT_DIR$/redis-master/pom.xml" />
+        <option value="$PROJECT_DIR$/producer-server/pom.xml" />
+        <option value="$PROJECT_DIR$/customer-server/pom.xml" />
+        <option value="$PROJECT_DIR$/skywaling/pom.xml" />
+        <option value="$PROJECT_DIR$/threadlocal/pom.xml" />
       </list>
     </option>
   </component>

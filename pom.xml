@@ -21,6 +21,7 @@
         <module>springcloud-eruak</module>
         <module>buiness</module>
         <module>redis-master</module>
+        <module>producer-server</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>

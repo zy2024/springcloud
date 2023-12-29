@@ -7,20 +7,32 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="redis-master" />
-        <module name="buiness" />
-        <module name="springcloud-gatway" />
+        <module name="producer-server" />
+        <module name="customer-server" />
+        <module name="threadlocal" />
+        <module name="skywaling" />
         <module name="springcloud-eruak" />
+        <module name="redis-master" />
+        <module name="springcloud-gatway" />
+        <module name="buiness" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="8">
+      <module name="zipkin-server" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="buiness" options="-parameters" />
+      <module name="customer-server" options="-parameters" />
+      <module name="producer-server" options="-parameters" />
       <module name="redis-master" options="-parameters" />
+      <module name="skywaling" options="-parameters" />
       <module name="springcloud" options="" />
       <module name="springcloud-eruak" options="-parameters" />
       <module name="springcloud-gatway" options="-parameters" />
+      <module name="threadlocal" options="-parameters" />
+      <module name="zipkin-server" options="" />
     </option>
   </component>
 </project>

@@ -49,9 +49,9 @@ public class LoginController  {
         subject.login(token);
         User userInfo = (User)subject.getPrincipal();
         String cooick = JwtUtils.createToken(userInfo.getId());
-       redisUtil.set(userInfo.getId(),cooick);
+        redisUtil.set(userInfo.getId(),cooick);
         response.setHeader("token",cooick);
-        request.setAttribute("token",cooick);
+
         modelMap.addAttribute("user",userInfo);
         return "index";
     }
@@ -66,13 +66,11 @@ public class LoginController  {
     }
 
     @GetMapping("/index")
-    @Log
     @ResponseBody
     public String login() {
         return "请求成功";
     }
     @GetMapping("/sendSsm")
-    @Log
     public ResponseResult sendSsm(String phone){
         if(redisUtil.hasKey(phone)){
             if(redisUtil.getExpire(phone)>0) {

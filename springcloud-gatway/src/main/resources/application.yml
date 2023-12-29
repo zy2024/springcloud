@@ -23,6 +23,7 @@ spring:
         - id: bus
           #uri: http://localhost:8082/
           uri: lb://bus-service   #两种方式都可以实现转发
+          order: -1
           predicates:
           - Path=/bus-service/**
           filters:
@@ -34,10 +35,52 @@ spring:
                 key-resolver: "#{@pathKeyResolver}"
                 # 速率限流
                 redis-rate-limiter.replenishRate: 1
+                # 令牌桶算法的每个请求消耗的token数，1个/次
+                redis-rate-limiter.requestedTokens: 1
                 # 能容纳的并发流量总数
                 redis-rate-limiter.burstCapacity: 1
+        - id: producer-server
+            #uri: http://localhost:8082/
+          uri: lb://producer-service
+          order: -2
+          predicates:
+            - Path=/producer-service/**
+          filters:
+            - StripPrefix= 1
+              # 指定过滤器
+            - name: RequestRateLimiter
+              args:
+                  # 指定限流标识
+                key-resolver: "#{@pathKeyResolver}"
+                  # 速率限流
+                redis-rate-limiter.replenishRate: 1
+                  # 令牌桶算法的每个请求消耗的token数，1个/次
+                redis-rate-limiter.requestedTokens: 1
+                  # 能容纳的并发流量总数
+                redis-rate-limiter.burstCapacity: 1
+        - id: customer-service
+          #uri: http://localhost:8082/
+          uri: lb://customer-service
+          order: -2
+          predicates:
+            - Path=/customer-service/**
+          filters:
+            - StripPrefix= 1
+            # 指定过滤器
+            - name: RequestRateLimiter
+              args:
+                # 指定限流标识
+                key-resolver: "#{@pathKeyResolver}"
+                # 速率限流
+                redis-rate-limiter.replenishRate: 1
+                # 令牌桶算法的每个请求消耗的token数，1个/次
+                redis-rate-limiter.requestedTokens: 1
+                # 能容纳的并发流量总数
+                redis-rate-limiter.burstCapacity: 1
+
   redis:
-    host: 192.168.32.202
+    host: 192.168.32.195
     password: 123456
     database: 0
+    port: 6379
 

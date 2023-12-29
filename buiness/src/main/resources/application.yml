@@ -7,7 +7,7 @@ eureka:
     # 以端口号注册
     instance-id: bus-service
 self:
-    myIp: 192.168.32.202
+    myIp: 192.168.32.143
 server:
   port: 8082
 spring:

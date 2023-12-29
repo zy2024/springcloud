@@ -1,0 +1,26 @@
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    # �Զ˿ں�ע��
+    instance-id: producer-service
+server:
+  port: 8088
+spring:
+  application:
+    name: producer-service
+  zipkin:
+    base-url: base-url
+  sleuth:
+    sampler:
+      probability: 1
+    # ȡ����
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: 123456
+    username: root
+    url: jdbc:mysql://localhost:3306/bus?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    type: com.alibaba.druid.pool.DruidDataSource
