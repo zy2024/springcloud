@@ -1,0 +1,12 @@
+
+spring:
+  servlet:
+    multipart:
+      #如果是想要不限制文件上传的大小，那么就把两个值都设置为-1
+      max-file-size: 5MB #设置单个文件的大小
+      max-request-size: 10MB #设置单次请求的文件的总大小
+server:
+  port: 8899
+  #tracker服务器IP地址和端口号
+fastdfs:
+  tracker_server: 192.168.179.128:22122

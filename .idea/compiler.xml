@@ -14,6 +14,7 @@
         <module name="springcloud-eruak" />
         <module name="redis-master" />
         <module name="springcloud-gatway" />
+        <module name="fastdfs" />
         <module name="buiness" />
       </profile>
     </annotationProcessing>
@@ -25,6 +26,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="buiness" options="-parameters" />
       <module name="customer-server" options="-parameters" />
+      <module name="fastdfs" options="-parameters" />
       <module name="producer-server" options="-parameters" />
       <module name="redis-master" options="-parameters" />
       <module name="skywaling" options="-parameters" />

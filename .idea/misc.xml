@@ -13,6 +13,7 @@
         <option value="$PROJECT_DIR$/customer-server/pom.xml" />
         <option value="$PROJECT_DIR$/skywaling/pom.xml" />
         <option value="$PROJECT_DIR$/threadlocal/pom.xml" />
+        <option value="$PROJECT_DIR$/fastdfs/pom.xml" />
       </list>
     </option>
   </component>
