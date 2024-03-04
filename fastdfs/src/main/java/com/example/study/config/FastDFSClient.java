@@ -1,74 +1,66 @@
 package com.example.study.config;
 
+import org.csource.common.MyException;
 import org.csource.common.NameValuePair;
-import org.csource.fastdfs.ClientGlobal;
-import org.csource.fastdfs.StorageClient1;
-import org.csource.fastdfs.TrackerClient;
-import org.csource.fastdfs.TrackerServer;
+import org.csource.fastdfs.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.web.multipart.MultipartFile;
 
-@Configuration
+import javax.annotation.PostConstruct;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+
 public class FastDFSClient {
     @Value("${fastdfs.tracker_server}")
     private String trackerServerIp;
-    @Lazy
-    private StorageClient1 storageClient;
 
-    @Bean
-    public StorageClient1 init() throws Exception {
-        ClientGlobal.init(trackerServerIp);
-        TrackerClient trackerClient = new TrackerClient();
-        TrackerServer trackerServer = trackerClient.getConnection();
-        return new StorageClient1(trackerServer, null);
-    }
-    /**
-     * 上传文件方法
-     * <p>Title: uploadFile</p>
-     * <p>Description: </p>
-     * @param fileName 文件全路径
-     * @param extName 文件扩展名，不包含（.）
-     * @param metas 文件扩展信息
-     * @return
-     * @throws Exception
-     */
-    public String uploadFile(String fileName, String extName, NameValuePair[] metas) throws Exception {
-        String result = storageClient.upload_file1(fileName, extName, metas);
-        return result;
+
+    private static TrackerClient trackerClient;
+    //加载文件
+    static {
+        try {
+
+            //加载fasetdfs配置项
+            Properties props = new Properties();
+            props.put(ClientGlobal.PROP_KEY_TRACKER_SERVERS,"ip:22122");
+            props.put(ClientGlobal.PROP_KEY_CONNECT_TIMEOUT_IN_SECONDS,3);
+            props.put(ClientGlobal.PROP_KEY_NETWORK_TIMEOUT_IN_SECONDS,30);
+
+            ClientGlobal.initByProperties(props);
+            trackerClient=new TrackerClient();
+        } catch (Exception e) {
+
+        }
     }
 
-    public String uploadFile(String fileName) throws Exception {
-        return uploadFile(fileName, null, null);
-    }
 
-    public String uploadFile(String fileName, String extName) throws Exception {
-        return uploadFile(fileName, extName, null);
-    }
 
     /**
-     * 上传文件方法
-     * <p>Title: uploadFile</p>
-     * <p>Description: </p>
-     * @param fileContent 文件的内容，字节数组
-     * @param extName 文件扩展名
-     * @param metas 文件扩展信息
-     * @return
-     * @throws Exception
+     * 文件上传
      */
-    public String uploadFile(byte[] fileContent, String extName, NameValuePair[] metas) throws Exception {
+    public static String[]  upload(MultipartFile file) throws Exception {
 
-        String result = storageClient.upload_file1(fileContent, extName, metas);
-        return result;
+        TrackerServer trackerServer = null;
+        StorageServer storageServer = null;
+        StorageClient1 storageClient1 = null;
+        trackerServer = trackerClient.getTrackerServer();
+        if (trackerServer == null) {
+           // logger.error("getConnection return null");
+        }
+        storageServer = trackerClient.getStoreStorage(trackerServer);
+        storageClient1 = new StorageClient1(trackerServer, storageServer);
+        String[] uploads = init().upload_file(file.getBytes(),file.getOriginalFilename(), null);
+        return uploads;
     }
 
-    public String uploadFile(byte[] fileContent) throws Exception {
-        return uploadFile(fileContent, null, null);
+    public static void deleteFile(String fileUrl) throws Exception {
+        init().delete_file1(fileUrl);
     }
-
-    public String uploadFile(byte[] fileContent, String extName) throws Exception {
-        return uploadFile(fileContent, extName, null);
-    }
-
 }

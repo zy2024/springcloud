@@ -10,17 +10,15 @@
         <module name="producer-server" />
         <module name="customer-server" />
         <module name="threadlocal" />
-        <module name="skywaling" />
         <module name="springcloud-eruak" />
         <module name="redis-master" />
+        <module name="buiness" />
         <module name="springcloud-gatway" />
         <module name="fastdfs" />
-        <module name="buiness" />
+        <module name="skywaling" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8">
-      <module name="zipkin-server" target="17" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="8" />
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -34,7 +32,6 @@
       <module name="springcloud-eruak" options="-parameters" />
       <module name="springcloud-gatway" options="-parameters" />
       <module name="threadlocal" options="-parameters" />
-      <module name="zipkin-server" options="" />
     </option>
   </component>
 </project>
