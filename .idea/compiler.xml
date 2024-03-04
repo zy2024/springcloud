@@ -14,16 +14,21 @@
         <module name="redis-master" />
         <module name="buiness" />
         <module name="springcloud-gatway" />
+        <module name="datasourcedemo" />
         <module name="fastdfs" />
         <module name="skywaling" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8" />
+    <bytecodeTargetLevel target="8">
+      <module name="datasourcesdemo" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="buiness" options="-parameters" />
       <module name="customer-server" options="-parameters" />
+      <module name="datasourcedemo" options="-parameters" />
+      <module name="datasourcesdemo" options="" />
       <module name="fastdfs" options="-parameters" />
       <module name="producer-server" options="-parameters" />
       <module name="redis-master" options="-parameters" />

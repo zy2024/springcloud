@@ -22,6 +22,8 @@
         <module>buiness</module>
         <module>redis-master</module>
         <module>producer-server</module>
+        <module>datasourcesdemo</module>
+        <module>datasourcedemo</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>
