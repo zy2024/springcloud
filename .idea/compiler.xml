@@ -11,6 +11,7 @@
         <module name="customer-server" />
         <module name="threadlocal" />
         <module name="springcloud-eruak" />
+        <module name="datasourcedemos" />
         <module name="redis-master" />
         <module name="buiness" />
         <module name="springcloud-gatway" />
@@ -28,6 +29,7 @@
       <module name="buiness" options="-parameters" />
       <module name="customer-server" options="-parameters" />
       <module name="datasourcedemo" options="-parameters" />
+      <module name="datasourcedemos" options="-parameters" />
       <module name="datasourcesdemo" options="" />
       <module name="fastdfs" options="-parameters" />
       <module name="producer-server" options="-parameters" />

@@ -24,6 +24,7 @@
         <module>producer-server</module>
         <module>datasourcesdemo</module>
         <module>datasourcedemo</module>
+        <module>datasourcedemos</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>
