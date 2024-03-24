@@ -1,6 +1,6 @@
 package com.example.mapper;
 
-import com.example.util.DynamicDB;
+import com.example.util.DataSourceNote;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -8,9 +8,9 @@ import org.apache.ibatis.annotations.Select;
 public interface UserMapper {
 
     @Select("select name from student where id=1")
-    @DynamicDB("db1")
+    @DataSourceNote("db1")
     String getTypeName();
-    @DynamicDB("db2")
+    @DataSourceNote("db2")
     @Select("select name from student where id=2")
     String getUserName();
 

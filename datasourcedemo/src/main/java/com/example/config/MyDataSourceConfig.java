@@ -7,14 +7,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-public class DataSourceConfig {
+public class MyDataSourceConfig {
 
     /**
      * 定义两个数据源，读取application.yml中配置
@@ -22,13 +21,13 @@ public class DataSourceConfig {
      * @return
      */
     @Bean(name = "db1")
-    @ConfigurationProperties(prefix = "spring.datasource.db1") // application.yml中对应属性的前缀
+    @ConfigurationProperties(prefix = "spring.datasource.db1")
     public DataSource dataSource1() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean(name = "db2")
-    @ConfigurationProperties(prefix = "spring.datasource.db2") // application.yml中对应属性的前缀
+    @ConfigurationProperties(prefix = "spring.datasource.db2")
     public DataSource dataSource2() {
         return DataSourceBuilder.create().build();
     }
@@ -38,15 +37,15 @@ public class DataSourceConfig {
      * 同时设置一个默认的数据源
      */
     @Bean("dynamicDataSource")
-    public DynamicDataSource dynamicDataSource(@Qualifier("db1") DataSource db1,
-                                               @Qualifier("db2") DataSource db2) {
+    public MyDataSource dynamicDataSource(@Qualifier("db1") DataSource db1,
+                                          @Qualifier("db2") DataSource db2) {
         Map<Object, Object> targetDataSource = new HashMap<>();
         targetDataSource.put("db1", db1);
         targetDataSource.put("db2", db2);
-        DynamicDataSource dynamicDataSource = new DynamicDataSource();
-        dynamicDataSource.setTargetDataSources(targetDataSource);
-        dynamicDataSource.setDefaultTargetDataSource(db1);
-        return dynamicDataSource;
+        MyDataSource myDataSource = new MyDataSource();
+        myDataSource.setTargetDataSources(targetDataSource);
+        myDataSource.setDefaultTargetDataSource(db1);
+        return myDataSource;
     }
 
     /**
@@ -58,6 +57,7 @@ public class DataSourceConfig {
                                                @Qualifier("db2") DataSource db2) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dynamicDataSource(db1, db2));
+        //没有xml文件时会报错
       //  sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
         return sqlSessionFactoryBean.getObject();
     }
