@@ -1,0 +1,31 @@
+
+server:
+  port: 8081
+spring:
+  application:
+    name: customer-service
+    # ȡ����
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: 123456
+    username: root
+    url: jdbc:mysql://localhost:3306/bus?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filters: stat,wall
+      max-active: 5
+      initial-size: 2
+      max-wait: 6000
+      min-idle: 5
+      validation-query: select 1
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      remove-abandoned: true
+      remove-abandoned-timeout: 1800
+      log-abandoned: true
+  mvc:
+    async:
+      request-timeout: 200000
