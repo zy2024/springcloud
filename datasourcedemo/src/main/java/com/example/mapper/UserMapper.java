@@ -9,9 +9,9 @@ public interface UserMapper {
 
     @Select("select name from student where id=1")
     @DataSourceNote("db1")
-    String getTypeName();
+    String getFristDbUserName();
     @DataSourceNote("db2")
     @Select("select name from student where id=2")
-    String getUserName();
+    String getSecondDbUserName();
 
 }

@@ -12,14 +12,11 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 数据源配置类
+ */
 @Configuration
 public class MyDataSourceConfig {
-
-    /**
-     * 定义两个数据源，读取application.yml中配置
-     *
-     * @return
-     */
     @Bean(name = "db1")
     @ConfigurationProperties(prefix = "spring.datasource.db1")
     public DataSource dataSource1() {

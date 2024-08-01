@@ -15,13 +15,13 @@ public class MyUserController {
     @Resource
     private UserMapper userMapper;
 
-    @GetMapping("/getUserDb1")
+    @GetMapping("/getFristDbUserName")
     public String getUserName(){
-        return userMapper.getTypeName();
+        return userMapper.getFristDbUserName();
     }
 
-    @GetMapping("/getUserDb2")
+    @GetMapping("/getSecondDbUserName")
     public String getUserName2(){
-        return userMapper.getUserName();
+        return userMapper.getSecondDbUserName();
     }
 }

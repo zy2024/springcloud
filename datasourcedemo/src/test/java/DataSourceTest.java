@@ -1,0 +1,3 @@
+@Run
+public class DataSourceTest {
+}

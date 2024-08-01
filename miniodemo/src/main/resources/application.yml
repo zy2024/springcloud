@@ -1,0 +1,16 @@
+server:
+  port: 8080
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  #minio配置
+  minio:
+    access-key: minio #启动命令里的账号
+    secret-key: minio123456 #启动命令里的地址
+    url: http://192.168.32.211:9001  #访问地址
+    bucket-name: project
+    endpoint: http://192.168.32.209:9001
+    fileHost: http://192.168.32.209:9001
