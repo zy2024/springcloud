@@ -7,22 +7,25 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="producer-server" />
-        <module name="customer-server" />
         <module name="threadlocal" />
-        <module name="springcloud-eruak" />
+        <module name="datasourcedemo" />
+        <module name="customer-server" />
         <module name="datasourcedemos" />
-        <module name="redis-master" />
         <module name="buiness" />
         <module name="springcloud-gatway" />
-        <module name="datasourcedemo" />
-        <module name="fastdfs" />
-        <module name="xxljobdemo" />
+        <module name="springcloud-eruak" />
         <module name="skywaling" />
+        <module name="fastdfs" />
+        <module name="redis-master" />
+        <module name="xxljobdemo" />
+        <module name="mybatis-datasource" />
+        <module name="producer-server" />
+        <module name="duriddemo" />
+        <module name="miniodemo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
-      <module name="datasourcesdemo" target="1.8" />
+      <module name="demodruid" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -31,8 +34,10 @@
       <module name="customer-server" options="-parameters" />
       <module name="datasourcedemo" options="-parameters" />
       <module name="datasourcedemos" options="-parameters" />
-      <module name="datasourcesdemo" options="" />
+      <module name="duriddemo" options="-parameters" />
       <module name="fastdfs" options="-parameters" />
+      <module name="miniodemo" options="-parameters" />
+      <module name="mybatis-datasource" options="-parameters" />
       <module name="producer-server" options="-parameters" />
       <module name="redis-master" options="-parameters" />
       <module name="skywaling" options="-parameters" />

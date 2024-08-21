@@ -26,6 +26,7 @@
         <module>datasourcedemo</module>
         <module>datasourcedemos</module>
         <module>xxljob-demo</module>
+        <module>duriddemo</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>
